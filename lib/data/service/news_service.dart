@@ -8,12 +8,11 @@ import 'package:newsapp/data/model/news/news.dart';
 import '../../product/enum/service_enum.dart';
 
 class NewsService {
-  Future<NewsData?> getNews({String? keywords}) async {
+  Future<NewsData?> getNews() async {
     try {
       final response = await NetworkManager.instance.service
-          .get(ServiceEnum.news.name, queryParameters: {'keywords': keywords, 'limit': 100});
+          .get(ServiceEnum.news.name, queryParameters: {'limit': 100});
       if (response.statusCode == HttpStatus.ok) {
-        // log(response.data.toString());
         return NewsData.fromJson(response.data);
       }
     } on DioError catch (e) {

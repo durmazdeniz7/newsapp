@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:newsapp/controller/news_controller.dart';
-import 'package:newsapp/product/color/color_constant.dart';
 import 'package:newsapp/product/enum/lottie_enum.dart';
 import 'package:newsapp/product/extension/project_extions.dart';
 import 'package:newsapp/product/router/approuter.dart';
@@ -17,8 +16,6 @@ class NewsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: ColorConstant.mainColor,
-        centerTitle: true,
         title: Text(
           'News App',
           style: Theme.of(context).textTheme.titleLarge!.copyWith(
@@ -51,11 +48,6 @@ class NewsView extends StatelessWidget {
               return GestureDetector(
                 onTap: () {
                   context.router.push(NewsDetailRoute(news: news));
-                  // Navigator.of(context).push(
-                  //   MaterialPageRoute(
-                  //     builder: (context) => NewsDetailView(news: news),
-                  //   ),
-                  // );
                 },
                 child: Container(
                   margin: const EdgeInsets.only(bottom: 16),

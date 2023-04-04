@@ -10,7 +10,7 @@ class NewsController extends GetxController {
 
   Future<void> getNews({String? query}) async {
     try {
-      final response = await _newsService.getNews(keywords: query);
+      final response = await _newsService.getNews();
       if (response != null && response.news != null) {
         newsData.value = response;
         isLoading = false.obs;

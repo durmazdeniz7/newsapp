@@ -8,10 +8,10 @@ import 'package:newsapp/data/model/news/news.dart';
 import '../../product/enum/service_enum.dart';
 
 class NewsService {
-  Future<NewsData?> getNews() async {
+  Future<NewsData?> getNews({String? query}) async {
     try {
       final response = await NetworkManager.instance.service
-          .get(ServiceEnum.news.name, queryParameters: {'limit': 100});
+          .get(ServiceEnum.news.name, queryParameters: {'limit': 100, 'keywords': 'turkey'});
       if (response.statusCode == HttpStatus.ok) {
         return NewsData.fromJson(response.data);
       }

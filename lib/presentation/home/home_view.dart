@@ -7,23 +7,48 @@ import 'package:newsapp/product/extension/project_extions.dart';
 import 'package:newsapp/product/router/approuter.dart';
 
 @RoutePage()
-class NewsView extends StatelessWidget {
-  NewsView({Key? key}) : super(key: key);
+class NewsView extends StatefulWidget {
+  const NewsView({Key? key}) : super(key: key);
 
+  @override
+  State<NewsView> createState() => _NewsViewState();
+}
+
+class _NewsViewState extends State<NewsView> {
+  bool isSearch = false;
   final NewsController controller = Get.put(NewsController()..getNews());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'News App',
-          style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
+        title: isSearch
+            ? TextField(
+                decoration: const InputDecoration(
+                    hintStyle: TextStyle(color: Colors.white),
+                    hintText: 'Search News',
+                    border: OutlineInputBorder(borderSide: BorderSide.none)),
+                onSubmitted: (value) {
+                  controller.searchQuery.value = value;
+                  controller.searchNews();
+                },
+              )
+            : Text(
+                'News App',
+                style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
               ),
-        ),
-        actions: const [],
+        actions: [
+          IconButton(
+              onPressed: () {
+                setState(() {
+                  isSearch = !isSearch;
+                });
+              },
+              icon: Icon(isSearch ? Icons.close : Icons.search))
+        ],
       ),
       body: GetX<NewsController>(
         builder: (controller) {

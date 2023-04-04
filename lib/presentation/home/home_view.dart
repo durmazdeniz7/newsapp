@@ -1,13 +1,15 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:newsapp/controller/news_controller.dart';
-import 'package:newsapp/presentation/home/news_detail.dart';
 import 'package:newsapp/product/color/color_constant.dart';
 import 'package:newsapp/product/enum/lottie_enum.dart';
 import 'package:newsapp/product/extension/project_extions.dart';
+import 'package:newsapp/product/router/approuter.dart';
 
-class HomeView extends StatelessWidget {
-  HomeView({Key? key}) : super(key: key);
+@RoutePage()
+class NewsView extends StatelessWidget {
+  NewsView({Key? key}) : super(key: key);
 
   final NewsController controller = Get.put(NewsController()..getNews());
 
@@ -48,11 +50,12 @@ class HomeView extends StatelessWidget {
 
               return GestureDetector(
                 onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => NewsDetail(news: news),
-                    ),
-                  );
+                  context.router.push(NewsDetailRoute(news: news));
+                  // Navigator.of(context).push(
+                  //   MaterialPageRoute(
+                  //     builder: (context) => NewsDetailView(news: news),
+                  //   ),
+                  // );
                 },
                 child: Container(
                   margin: const EdgeInsets.only(bottom: 16),

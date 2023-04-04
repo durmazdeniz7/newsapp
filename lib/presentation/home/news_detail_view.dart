@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:newsapp/core/urlhelper/url_helper.dart';
 import 'package:newsapp/data/model/news/news.dart';
@@ -5,10 +6,10 @@ import 'package:newsapp/product/color/color_constant.dart';
 import 'package:newsapp/product/enum/lottie_enum.dart';
 import 'package:newsapp/product/extension/project_extions.dart';
 
-class NewsDetail extends StatelessWidget with UrlLauncherHelper {
+@RoutePage()
+class NewsDetailView extends StatelessWidget with UrlLauncherHelper {
+  const NewsDetailView({Key? key, this.news}) : super(key: key);
   final News? news;
-
-  const NewsDetail({Key? key, this.news}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

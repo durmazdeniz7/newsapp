@@ -11,7 +11,7 @@ class NewsService {
   Future<NewsData?> getNews({String? query}) async {
     try {
       final response = await NetworkManager.instance.service
-          .get(ServiceEnum.news.name, queryParameters: {'limit': 100, 'keywords': 'turkey'});
+          .get(ServiceEnum.news.name, queryParameters: {'limit': 100, 'keywords': query});
       if (response.statusCode == HttpStatus.ok) {
         return NewsData.fromJson(response.data);
       }
